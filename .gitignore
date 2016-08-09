@@ -1,0 +1,8 @@
+*.class
+/*.class
+*.classpath
+*.DS_Store
+*.apk
+*.project
+/bin
+/bin/

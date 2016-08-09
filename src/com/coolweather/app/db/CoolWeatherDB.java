@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class CoolWeatherDB {
 //数据库名
-	public static final String DB_NAME="cool_weather";
+	public static final String DB_NAME="cool_weather.db";
 //	数据库版本
 	public static final int VERSION=1;
 	private static CoolWeatherDB coolWeatherDB;
@@ -64,8 +64,8 @@ public class CoolWeatherDB {
 			ContentValues values=new ContentValues();
 			values.put("city_name", city.getCityName());
 			values.put("city_code", city.getCityCode());
-			values.put("city_id", city.getProvinceId());
-			db.insert("city", null, values);
+			values.put("province_id", city.getProvinceId());
+			db.insert("City", null, values);
 		}
 	}
 //	从数据库读取某省下的所有城市信息
@@ -78,6 +78,7 @@ public class CoolWeatherDB {
 				city.setId(cursor.getInt(cursor.getColumnIndex("id")));
 				city.setCityName(cursor.getString(cursor.getColumnIndex("city_name")));
 				city.setCityCode(cursor.getString(cursor.getColumnIndex("city_code")));
+				city.setProvinceId(provinceId);
 				list.add(city);
 			}while(cursor.moveToNext());
 		}
